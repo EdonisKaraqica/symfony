@@ -1,0 +1,32 @@
+#config/packages/fost_rest.yaml
+fos_rest:
+    view:
+        view_response_listener:  true
+    format_listener:
+        rules:
+            - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+            - { path: '^/', priorities: [ 'html', '*/*'], fallback_format: html, prefer_extension: true }
+
+
+## FOSUser
+#fos_user:
+#    db_driver: orm
+#    firewall_name: main
+#    user_class: UserBundle\Entity\User
+#
+#from_email:
+#    address: you@example.com
+#    sender_name: You
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: Entity\Admin
+    from_email:
+        address: you@example.com
+        sender_name: You
+
+framework:
+    # ...
+    templating:
+        engines: ['twig', 'php']
